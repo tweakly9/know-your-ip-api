@@ -6,14 +6,15 @@
     "deploy": "wrangler deploy",
     "dev": "wrangler dev",
     "start": "wrangler dev",
-    "test": "vitest"
+    "test": "vitest",
+    "update-deps": "npm i -g npm-check-updates && ncu -u && npm install --legacy-peer-deps"
   },
   "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.6.4",
-    "vitest": "2.1.8",
-    "wrangler": "^3.107.3"
+    "@cloudflare/vitest-pool-workers": "^0.6.15",
+    "vitest": "3.0.5",
+    "wrangler": "^3.109.0"
   },
   "dependencies": {
-    "hono": "^4.7.0"
+    "hono": "^4.7.1"
   }
 }

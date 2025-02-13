@@ -130,8 +130,14 @@ app.get('/', (c) => {
 app.get('*', (c) => c.json({ error: "Not found." }, 404));
 
 function getIpDetails(c) {
+
+	let ip = c.req.header('cf-connecting-ipv4') || 
+	c.req.header('x-real-ip') ||
+	c.req.header('cf-connecting-ip') ||
+	"Not Available";
+
 	let ipDetails = new IpDetails(
-		c.req.header('cf-connecting-ip') || "Not Available",
+		ip,
 		c.req.raw.cf?.country || "Unknown",
 		c.req.raw.cf?.timezone || "Unknown",
 		c.req.raw.cf?.city || "Unknown",
