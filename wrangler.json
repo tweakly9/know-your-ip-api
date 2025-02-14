@@ -3,6 +3,7 @@
   "name": "know-your-ip-api",
   "main": "src/index.js",
   "compatibility_date": "2025-02-13",
+  "workers_dev": false,
   "observability": {
     "enabled": true
   }
