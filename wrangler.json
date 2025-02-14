@@ -2,7 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "know-your-ip-api",
   "main": "src/index.js",
-  "compatibility_date": "2025-02-04",
+  "compatibility_date": "2025-02-13",
   "observability": {
     "enabled": true
   }

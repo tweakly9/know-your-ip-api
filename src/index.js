@@ -33,17 +33,43 @@ const View = (siteData) => {
 		  
 		  <style>
 			body {
-			  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-			  min-height: 100vh;
+				font-family: 'Poppins', sans-serif;
+				background-color: darkslategray;
+				color: #fff;
+				display: flex;
+				flex-direction: column;
+				min-height: 100vh;
 			}
-			.label {
-			  font-weight: 600;
-			  color: #495057;
-			}
-			.value {
-			  color: #0d6efd;
-			  font-size: 1.1rem;
-			}
+          .label {
+            font-weight: 600;
+            color: #495057;
+          }
+          .value {
+            color: gray;
+            font-size: 1.1rem;
+          }
+          .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+          }
+          .footer-link {
+            color: #0d6efd;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
+          }
+          .footer-link:hover {
+            background-color: #0d6efd;
+            color: white;
+            transform: translateY(-2px);
+          }
 		  </style>
 		</head>
 		<body class="flex w-100 items-center justify-center h-screen">
@@ -51,7 +77,7 @@ const View = (siteData) => {
 			<div class="row justify-content-center">
 			  <div class="col-12 col-md-8 col-lg-6 mt-5">
 				<div class="card shadow-lg">
-				  <div class="card-header bg-primary text-white">
+				  <div class="card-header bg-secondary text-white">
 					<h1 class="h3 mb-0">IP Address Details</h1>
 				  </div>
 				  <div class="card-body">
@@ -98,9 +124,17 @@ const View = (siteData) => {
 		  </div>
 
 		<!-- Footer -->
-		<footer class="text-center py-3" style="font-size: 14px; color: gray;">
-			<a href="https://isitholiday.com" class="mx-2 text-decoration-none text-muted">Is It Holiday Today?</a>
-		</footer>
+		<footer class="footer d-flex justify-content-center align-items-center">
+          <a href="https://isitholiday.com" 
+             class="footer-link d-inline-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event me-2" viewBox="0 0 16 16">
+              <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+              <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+            </svg>
+            Check Today's Holidays →
+          </a>
+        </footer>
+        
 		  
 		  <!-- Bootstrap JS -->
 		  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -131,10 +165,10 @@ app.get('*', (c) => c.json({ error: "Not found." }, 404));
 
 function getIpDetails(c) {
 
-	let ip = c.req.header('cf-connecting-ipv4') || 
-	c.req.header('x-real-ip') ||
-	c.req.header('cf-connecting-ip') ||
-	"Not Available";
+	let ip = c.req.header('cf-connecting-ipv4') ||
+		c.req.header('x-real-ip') ||
+		c.req.header('cf-connecting-ip') ||
+		"Not Available";
 
 	let ipDetails = new IpDetails(
 		ip,
