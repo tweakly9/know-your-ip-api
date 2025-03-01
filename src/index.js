@@ -28,49 +28,156 @@ const View = (siteData) => {
 		  <meta name="description" content="Find out what is your IP address and country location. Free IP address lookup tool.">
 		  <meta name="keywords" content="know your IP, what is my IP address, what is my IP, IP lookup, IP checker">
 		  
-		  <!-- Bootstrap CSS -->
-		  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-		  
-		  <style>
-			body {
-				font-family: 'Poppins', sans-serif;
-				background-color: darkslategray;
-				color: #fff;
-				display: flex;
-				flex-direction: column;
-				min-height: 100vh;
-			}
+		  <!-- CSS -->
+        <style>
+          :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #495057;
+            --background-color: darkslategray;
+            --white: #fff;
+            --gray: #6c757d;
+          }
+
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
+
+          body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--white);
+            margin: 0;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 80px;
+          }
+
+          .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px;
+          }
+
+          .row {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            margin: 0;
+          }
+
+          .col-12 {
+            width: 100%;
+            padding: 0 15px;
+          }
+
+          .col-5 {
+            width: 41.666667%;
+            padding-right: 15px;
+          }
+
+          .col-7 {
+            width: 58.333333%;
+          }
+
+          @media (min-width: 768px) {
+            .col-md-8 {
+              width: 66.666667%;
+              margin: 0 auto;
+            }
+          }
+
+          @media (min-width: 992px) {
+            .col-lg-6 {
+              width: 50%;
+              margin: 0 auto;
+            }
+          }
+
+          .card {
+            background-color: var(--white);
+            border-radius: 0.5rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+            margin-top: 2rem;
+          }
+
+          .card-header {
+            background-color: var(--gray);
+            color: var(--white);
+            padding: 1rem;
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+          }
+
+          .card-body {
+            padding: 1rem;
+          }
+
+          .card-body .row {
+            margin-bottom: 0.5rem;
+          }
+
+          .card-body .row:last-child {
+            margin-bottom: 0;
+          }
+
           .label {
             font-weight: 600;
-            color: #495057;
+            color: var(--secondary-color);
           }
+
           .value {
-            color: gray;
+            color: var(--gray);
             font-size: 1.1rem;
           }
+
           .footer {
             position: absolute;
             bottom: 0;
+            left: 0;
             width: 100%;
             height: 60px;
             background-color: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
           }
+
           .footer-link {
-            color: #0d6efd;
+            color: var(--primary-color);
             font-weight: 500;
             text-decoration: none;
             transition: all 0.3s ease;
             padding: 8px 16px;
             border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
           }
+
           .footer-link:hover {
-            background-color: #0d6efd;
-            color: white;
+            background-color: var(--primary-color);
+            color: var(--white);
             transform: translateY(-2px);
           }
-		  </style>
+
+          .text-start { text-align: left; }
+          .text-white { color: var(--white); }
+          .justify-content-center { justify-content: center; }
+          .items-center { align-items: center; }
+          .mb-0 { margin-bottom: 0; }
+          .mb-2 { margin-bottom: 0.5rem; }
+          .mt-5 { margin-top: 3rem; }
+          .me-2 { margin-right: 0.5rem; }
+          .shadow-lg { box-shadow: 0 1rem 3rem rgba(0,0,0,.175); }
+          .h3 { font-size: 1.75rem; }
+          .bg-secondary { background-color: var(--gray); }
+        </style>
+
+
 		</head>
 		<body class="flex w-100 items-center justify-center h-screen">
 		  <div class="container">
@@ -134,10 +241,7 @@ const View = (siteData) => {
             Check Today's Holidays →
           </a>
         </footer>
-        
 		  
-		  <!-- Bootstrap JS -->
-		  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 		</body>
 	  </html>
 	`;
