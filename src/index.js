@@ -14,6 +14,10 @@ class IpDetails {
 		this.latitude = latitude;
 		this.postalCode = postalCode;
 		this.regionCode = regionCode;
+		this.timestamp = new Date().toISOString();
+		this.localTime = timezone !== "Unknown" 
+			? new Date().toLocaleString('en-US', { timeZone: timezone })
+			: new Date().toLocaleString('en-US');
 	}
 }
 
@@ -27,7 +31,7 @@ const View = (siteData) => {
 		  <title>Know Your IP Address | IP Lookup Tool</title>
 		  <meta name="description" content="Find out what is your IP address and country location. Free IP address lookup tool.">
 		  <meta name="keywords" content="know your IP, what is my IP address, what is my IP, IP lookup, IP checker">
-		  
+      <link rel="icon" type="image/x-icon" href="favicon.ico">
 		  <!-- CSS -->
         <style>
           :root {
@@ -37,13 +41,11 @@ const View = (siteData) => {
             --white: #fff;
             --gray: #6c757d;
           }
-
           * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
           }
-
           body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--background-color);
@@ -53,31 +55,26 @@ const View = (siteData) => {
             position: relative;
             padding-bottom: 80px;
           }
-
           .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 15px;
           }
-
           .row {
             display: flex;
             flex-wrap: wrap;
             width: 100%;
             margin: 0;
           }
-
           .col-12 {
             width: 100%;
             padding: 0 15px;
           }
-
           .col-5 {
             width: 41.666667%;
             padding-right: 15px;
           }
-
           .col-7 {
             width: 58.333333%;
           }
@@ -88,21 +85,18 @@ const View = (siteData) => {
               margin: 0 auto;
             }
           }
-
           @media (min-width: 992px) {
             .col-lg-6 {
               width: 50%;
               margin: 0 auto;
             }
           }
-
           .card {
             background-color: var(--white);
             border-radius: 0.5rem;
             box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
             margin-top: 2rem;
           }
-
           .card-header {
             background-color: var(--gray);
             color: var(--white);
@@ -110,7 +104,6 @@ const View = (siteData) => {
             border-top-left-radius: 0.5rem;
             border-top-right-radius: 0.5rem;
           }
-
           .card-body {
             padding: 1rem;
           }
@@ -127,12 +120,10 @@ const View = (siteData) => {
             font-weight: 600;
             color: var(--secondary-color);
           }
-
           .value {
             color: var(--gray);
             font-size: 1.1rem;
           }
-
           .footer {
             position: absolute;
             bottom: 0;
@@ -146,7 +137,6 @@ const View = (siteData) => {
             justify-content: center;
             align-items: center;
           }
-
           .footer-link {
             color: var(--primary-color);
             font-weight: 500;
@@ -157,13 +147,11 @@ const View = (siteData) => {
             display: inline-flex;
             align-items: center;
           }
-
           .footer-link:hover {
             background-color: var(--primary-color);
             color: var(--white);
             transform: translateY(-2px);
           }
-
           .text-start { text-align: left; }
           .text-white { color: var(--white); }
           .justify-content-center { justify-content: center; }
@@ -176,8 +164,6 @@ const View = (siteData) => {
           .h3 { font-size: 1.75rem; }
           .bg-secondary { background-color: var(--gray); }
         </style>
-
-
 		</head>
 		<body class="flex w-100 items-center justify-center h-screen">
 		  <div class="container">
@@ -224,6 +210,14 @@ const View = (siteData) => {
 					  <div class="col-5 text-start label">Your RegionCode:</div>
 					  <div class="col-7 text-start value">${siteData.regionCode}</div>
 					</div>
+					<div class="row mb-2">
+					  <div class="col-5 text-start label">Local Time:</div>
+					  <div class="col-7 text-start value">${siteData.localTime}</div>
+					</div>
+					<div class="row">
+					  <div class="col-5 text-start label">UTC Time:</div>
+					  <div class="col-7 text-start value">${siteData.timestamp}</div>
+					</div>
 				  </div>
 				</div>
 			  </div>
@@ -232,16 +226,14 @@ const View = (siteData) => {
 
 		<!-- Footer -->
 		<footer class="footer d-flex justify-content-center align-items-center">
-          <a href="https://isitholiday.com" 
-             class="footer-link d-inline-flex align-items-center">
+          <a href="https://isitholiday.com" class="footer-link d-inline-flex align-items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event me-2" viewBox="0 0 16 16">
               <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
               <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-            </svg>
+            </svg>  
             Check Today's Holidays →
           </a>
-        </footer>
-		  
+        </footer>	
 		</body>
 	  </html>
 	`;
@@ -268,16 +260,17 @@ app.get('/', (c) => {
 app.get('*', (c) => c.json({ error: "Not found." }, 404));
 
 function getIpDetails(c) {
-
 	let ip = c.req.header('cf-connecting-ipv4') ||
 		c.req.header('x-real-ip') ||
 		c.req.header('cf-connecting-ip') ||
 		"Not Available";
 
+	let timezone = c.req.raw.cf?.timezone || "Unknown";
+
 	let ipDetails = new IpDetails(
 		ip,
 		c.req.raw.cf?.country || "Unknown",
-		c.req.raw.cf?.timezone || "Unknown",
+		timezone,
 		c.req.raw.cf?.city || "Unknown",
 		c.req.raw.cf?.region || "Unknown",
 		c.req.raw.cf?.longitude || "Unknown",
